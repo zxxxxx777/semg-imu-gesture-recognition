@@ -17,7 +17,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 
 from config import *
-from models import FeatureFusionNet # 修改点：导入新的特征融合网络
+from models import FeatureFusionNet
 from train import EarlyStopping
 
 ALL_SUBJECTS = list(range(1, 21))
@@ -96,7 +96,7 @@ def train_fusion_one_epoch(model, loader, criterion, optimizer, device):
             
         optimizer.zero_grad()
         
-        # 修改点：直接通过融合模型前向传播，得到最终融合 logits
+        # 计算融合分支的分类输出
         fusion_logits, _, _ = model(x_emg, x_imu)
         
         loss = criterion(fusion_logits, y)
@@ -117,7 +117,7 @@ def evaluate_fusion(model, loader, criterion, device):
         for x_emg, x_imu, y in loader:
             x_emg, x_imu, y = x_emg.to(device), x_imu.to(device), y.to(device)
             
-            # 修改点：测试时同样直接调用前向传播
+            # 使用融合分支的分类输出进行评估
             fusion_logits, _, _ = model(x_emg, x_imu)
             loss = criterion(fusion_logits, y) # 测试时只关注融合主损失
             

@@ -7,7 +7,7 @@ except ImportError:
 
 
 # ==========================================
-# 1. 单受试者 (Intra-subject) 配置保留区
+# 1. 单受试者 (Intra-subject) 配置
 # ==========================================
 idx = 10
 LOSO_BASE_DATA_DIR = "/hdd/zhaozixuan/DB2"

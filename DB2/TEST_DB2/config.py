@@ -8,7 +8,7 @@ except ImportError:
 # ==========================================
 # 1. 基础环境与网络参数
 # ==========================================
-# 设备选择：默认使用你报错中显示的 cuda:1
+# 设备选择：CUDA 可用时默认使用 cuda:1
 DEVICE = 'cuda:1' if torch is not None and torch.cuda.is_available() else 'cpu'
 SEED = 2026
 
@@ -37,7 +37,7 @@ MAT_REP_KEY = 'rerepetition'
 # ==========================================
 # 3. 跨受试者 (Inter-subject/LOSO) 数据集路径配置
 # ==========================================
-# 你的基础数据根目录
+# 数据集根目录
 LOSO_BASE_DATA_DIR = "/hdd/zhaozixuan/DB2"
 
 # DB2 动作集:
@@ -57,14 +57,14 @@ PRETRAIN_SUBJECTS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 TARGET_SUBJECT = 10
 
 # 目标被试 (Sub 10) 的 Repetition 划分
-# 根据你的实际需求，Rep 1 用于微调，Rep 2-6 或 2,5 用于测试
+# Rep 1 用于微调，Rep 2–6 用于测试
 TRAIN_REPS = [1]
 TEST_REPS = [2, 3, 4, 5, 6]
 
 # ==========================================
-# 4. 单受试者 (Intra-subject) 兼容配置保留区
+# 4. 单受试者 (Intra-subject) 兼容配置
 # ==========================================
-# (这部分主要为了兼容你之前的 utils.py 中的 load_data 函数)
+# 供 utils.py 中的 load_data 函数使用
 idx = TARGET_SUBJECT
 DATA_DIR = f"{LOSO_BASE_DATA_DIR}/Subject_{idx}"
 FILE_LIST = [f"S{idx}_E{exercise}_A1.mat" for exercise in EXERCISES]

@@ -91,7 +91,7 @@ class EMGHandNet1D(nn.Module):
 
 
 # ==========================================
-# 新增：特征级多模态融合网络 (Feature-Level Fusion + MLP)
+# 特征级多模态融合网络 (Feature-Level Fusion + MLP)
 # ==========================================
 class FeatureFusionNet(nn.Module):
     def __init__(self, emg_ch: int, imu_ch: int, num_classes: int = 40, lstm_hidden: int = 128, dropout_head: float = DROPOUT_HEAD):

@@ -6,7 +6,7 @@ except ImportError:
     torch = None
 
 # ==========================================
-# 1. 单受试者 (Intra-subject) 配置保留区
+# 1. 单受试者 (Intra-subject) 配置
 # ==========================================
 idx = 10
 LOSO_BASE_DATA_DIR = "/hdd/zhaozixuan/DB5"
@@ -44,7 +44,7 @@ TEST_REPS = [2, 5]
 # ==========================================
 # 2. 跨受试者 (Inter-subject/LOSO) 配置区
 # ==========================================
-# 假设总共有10个受试者参与本次实验 (根据实际人数调整)
+# 跨受试者实验的受试者划分
 LOSO_ALL_SUBJECTS = [1, 2, 3, 4, 5, 6, 7, 8,9]
 LOSO_TEST_SUBJECT = [10]  
 #LOSO_TEST_SUBJECT = [9, 10]  

@@ -33,7 +33,7 @@ def load_single_subject_emg(subject_id):
     加载指定受试者的连续 sEMG 数据，并过滤静息状态和无效重复。
     供 LOSO (Leave-One-Subject-Out) 跨人验证使用。
     """
-    # 注意这里使用了新的配置变量 LOSO_BASE_DATA_DIR
+    # 从 LOSO_BASE_DATA_DIR 读取受试者数据
     data_dir = f"{LOSO_BASE_DATA_DIR}/Subject_{subject_id}"
     file_list = subject_file_list(subject_id)
     

@@ -3,7 +3,7 @@ import torch
 # ==========================================
 # 1. 基础环境与网络参数
 # ==========================================
-# 设备选择：默认使用你报错中显示的 cuda:1
+# 设备选择：CUDA 可用时默认使用 cuda:1
 DEVICE = 'cuda:1' if torch.cuda.is_available() else 'cpu'
 
 # 核心网络超参数
@@ -31,7 +31,7 @@ MAT_REP_KEY = 'rerepetition'
 # ==========================================
 # 3. 跨受试者 (Inter-subject/LOSO) 数据集路径配置
 # ==========================================
-# 你的基础数据根目录
+# 数据集根目录
 LOSO_BASE_DATA_DIR = "/hdd/zhaozixuan/DB5"
 
 # DB5 动作集: E1=A(12类), E2=B(17类), E3=C(23类)
@@ -60,14 +60,14 @@ PRETRAIN_SUBJECTS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 TARGET_SUBJECT = 10
 
 # 目标被试 (Sub 10) 的 Repetition 划分
-# 根据你的实际需求，Rep 1 用于微调，Rep 2-6 或 2,5 用于测试
+# Rep 1 用于微调，Rep 2–6 用于测试
 TRAIN_REPS = [1]
 TEST_REPS = [2, 3, 4, 5, 6]
 
 # ==========================================
-# 4. 单受试者 (Intra-subject) 兼容配置保留区
+# 4. 单受试者 (Intra-subject) 兼容配置
 # ==========================================
-# (这部分主要为了兼容你之前的 utils.py 中的 load_data 函数)
+# 供 utils.py 中的 load_data 函数使用
 idx = TARGET_SUBJECT
 DATA_DIR = f"{LOSO_BASE_DATA_DIR}/Subject_{idx}"
 FILE_LIST = [f"S{idx}_E{exercise}_A1.mat" for exercise in EXERCISES]
@@ -118,11 +118,11 @@ MODALITY_DROPOUT_P = 0.1
 ALIGN_PROJ_DIM = 64
 
 # 8. 实验开关
-# 默认使用当前最稳定的固定损失权重；同方差不确定性权重保留为可选消融。
+# 默认使用固定损失权重；同方差不确定性权重用于可选消融实验。
 USE_HOMOSCEDASTIC_LOSS = False
 
 # 9. 预训练缓存
-# 第一次完整预训练后保存权重和归一化参数；后续调微调策略时可直接跳过 Phase 1。
+# 启用缓存时，可复用预训练权重和归一化参数，跳过 Phase 1。
 USE_PRETRAIN_CACHE = False
 FORCE_PRETRAIN = False
 PRETRAIN_CACHE_NAME = "pretrain_bires_crossattn_mutual_moddrop_gatesparse_relalign_db5_v1.pth"
